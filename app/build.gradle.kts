@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -67,4 +68,17 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+
+    //destinations
+    implementation(libs.destinations.core)
+//    ksp(libs.destinations.ksp)
+
+    // Koin
+    implementation(libs.koin)
+    implementation(libs.koin.worker)
+
+    // livedata
+    implementation(libs.livedata)
+    implementation(libs.livedata.runtime)
+
 }

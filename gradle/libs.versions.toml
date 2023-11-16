@@ -9,6 +9,24 @@ lifecycle-runtime-ktx = "2.6.2"
 activity-compose = "1.8.0"
 compose-bom = "2023.08.00"
 
+#compose destination
+composeDestinationsVersion = "1.9.42-beta"
+# kotlinx serialization
+#serialization = "1.5.1"
+
+# ksp
+ksp = "1.8.10-1.0.9"
+firebase-database-ktx = "20.3.0"
+
+# koin
+koin = "3.4.4"
+koin-worker = "3.4.0"
+
+# Livedata
+lifecycle = "2.6.1"
+lifecycle-runtime = "1.5.0-alpha04"
+
+
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -24,8 +42,19 @@ ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
+#compose destinations
+destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "animations-core", version.ref = "composeDestinationsVersion" }
+destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "composeDestinationsVersion" }
+# kotlinx serialization
+#serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
+# Koin
+koin = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+koin-worker = { group = "io.insert-koin", name = "koin-androidx-workmanager", version.ref = "koin-worker" }
+# Livedata
+livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+livedata-runtime = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "lifecycle-runtime" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

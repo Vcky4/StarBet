@@ -71,7 +71,7 @@ dependencies {
 
     //destinations
     implementation(libs.destinations.core)
-//    ksp(libs.destinations.ksp)
+    ksp(libs.destinations.ksp)
 
     // Koin
     implementation(libs.koin)

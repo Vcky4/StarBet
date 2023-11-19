@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1024959267182",
+    "project_id": "star-bet",
+    "storage_bucket": "star-bet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024959267182:android:655bd72481795b8cd8017f",
+        "android_client_info": {
+          "package_name": "com.starbet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjkC8dimxqKmtmwpteu6o7J4esn4tbW-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

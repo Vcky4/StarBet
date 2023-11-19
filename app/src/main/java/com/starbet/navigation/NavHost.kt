@@ -2,12 +2,10 @@ package com.starbet.navigation
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,7 +21,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -39,7 +36,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -47,19 +43,19 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.core.os.LocaleListCompat
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
+import com.ramcosta.composedestinations.navigation.navigate
 import com.starbet.R
 import com.starbet.ui.screens.NavGraphs
 import com.starbet.ui.screens.appCurrentDestinationAsState
-import com.starbet.ui.screens.destinations.AdminDestination
 import com.starbet.ui.screens.destinations.AnnouncementDestination
-import com.starbet.ui.screens.destinations.ChatDestination
 import com.starbet.ui.screens.destinations.Destination
 import com.starbet.ui.screens.destinations.NotificationsDestination
 import com.starbet.ui.screens.destinations.PdfDisplayDestination
@@ -67,11 +63,6 @@ import com.starbet.ui.screens.home.HomeViewModel
 import com.starbet.ui.screens.startAppDestination
 import com.starbet.ui.theme.Background
 import com.starbet.ui.theme.Primary
-import com.lsbt.livesportsbettingtips.utils.getAppVersion
-import com.lsbt.livesportsbettingtips.utils.sendMail
-import com.ramcosta.composedestinations.DestinationsNavHost
-import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
-import com.ramcosta.composedestinations.navigation.navigate
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -120,343 +111,181 @@ fun NavHost() {
         }
     }
 
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
-            Column(
-                Modifier
-                    .background(Primary)
-                    .fillMaxWidth(0.6f)
+
+    Scaffold(
+        topBar = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Primary),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Spacer(modifier = Modifier.padding(16.dp))
-                Text(
-                    stringResource(id = R.string.about_us),
-                    color = Background,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .clickable {
-                            navController.navigate(PdfDisplayDestination("about"))
-                            scope.launch {
-                                drawerState.close()
-                            }
+                IconButton(onClick = {
+                    if (currentDestination == NotificationsDestination
+                        || currentDestination == PdfDisplayDestination
+                        || currentDestination == AnnouncementDestination
+                    ) {
+                        navController.navigateUp()
+                    } else {
+                        scope.launch {
+                            drawerState.open()
                         }
-                )
-                Text(
-                    stringResource(id = R.string.set_langauge),
-                    color = Background,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .clickable {
-                            openDialog = true
-                            scope.launch {
-                                drawerState.close()
-                            }
-                        }
-                )
-                Row(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxWidth()
-                        .clickable {
-                            isContactsOpen = !isContactsOpen
-                        },
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        stringResource(id = R.string.contact_us),
-                        color = Background,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                    Icon(
-                        painter = painterResource(id = R.drawable.arrow_right),
-                        contentDescription = "expand",
-                        tint = Background,
-                        modifier = Modifier
-                            .rotate(if (isContactsOpen) 90f else 0f)
-                    )
-                }
-                AnimatedVisibility(visible = isContactsOpen) {
-                    Column {
-                        val appName = stringResource(id = R.string.app_name)
-                        Text(
-                            stringResource(id = R.string.email),
-                            color = Background,
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(bottom = 16.dp, start = 30.dp)
-                                .clickable {
-                                    scope.launch {
-                                        context.sendMail(
-                                            email,
-                                            appName
-                                        )
-                                        drawerState.close()
-                                    }
-                                }
-                        )
-//                        Text(
-//                            stringResource(id = R.string.whatsapp),
-//                            color = Background,
-//                            fontSize = 18.sp,
-//                            fontWeight = FontWeight.Bold,
-//                            modifier = Modifier
-//                                .padding(start = 30.dp, bottom = 16.dp)
-//                                .clickable {
-//                                    scope.launch {
-//                                        context.openWhatsApp(whatsapp)
-//                                        drawerState.close()
-//                                    }
-//                                }
-//                        )
-                        Text(
-                            stringResource(id = R.string.chat_with_us),
-                            color = Background,
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(top = 10.dp, start = 30.dp, bottom = 16.dp)
-                                .clickable {
-                                    navController.navigate(ChatDestination())
-                                }
-                        )
                     }
+                }) {
+                    Icon(
+                        painter = painterResource(
+                            id = if (currentDestination == NotificationsDestination
+                                || currentDestination == PdfDisplayDestination
+                                || currentDestination == AnnouncementDestination
+                            ) {
+                                R.drawable.arrow_back
+                            } else {
+                                R.drawable.menu
+                            }
+                        ),
+                        contentDescription = "menu",
+                        tint = Background
+                    )
                 }
                 Text(
-                    stringResource(id = R.string.privacy_policy),
+                    stringResource(id = R.string.app_name),
                     color = Background,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .clickable {
-                            navController.navigate(PdfDisplayDestination("privacy"))
-                            scope.launch {
-                                drawerState.close()
-                            }
-                        }
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
                 )
-                Text(
-                    stringResource(id = R.string.terms_and_conditions),
-                    color = Background,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .clickable {
-                            navController.navigate(PdfDisplayDestination("terms"))
-                            scope.launch {
-                                drawerState.close()
-                            }
-                        }
-                )
-                Spacer(modifier = Modifier.padding(20.dp))
-                Text(
-                    "V " + context.getAppVersion()?.versionName,
-                    color = Background,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable {
-//                            lastClickTime = System.currentTimeMillis()
-//                            clickCount++
-//                            if (clickCount >= 15) {
-//                                clickCount = 0 // Reset click count
-//                                scope.launch {
-//                                    drawerState.close()
-//                                }
-//                                navController.navigate(AdminDestination)
-//                            }
-                        }
-                )
-                Spacer(modifier = Modifier.padding(20.dp))
-            }
-
-
-        }
-    ) {
-        Scaffold(
-            topBar = {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Primary),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
+                if (currentDestination != NotificationsDestination
+                    && currentDestination != AnnouncementDestination
                 ) {
                     IconButton(onClick = {
-                        if (currentDestination == NotificationsDestination
-                            || currentDestination == PdfDisplayDestination
-                            || currentDestination == AnnouncementDestination
-                        ) {
-                            navController.navigateUp()
-                        } else {
-                            scope.launch {
-                                drawerState.open()
-                            }
-                        }
+                        navController.navigate(AnnouncementDestination)
                     }) {
                         Icon(
-                            painter = painterResource(
-                                id = if (currentDestination == NotificationsDestination
-                                    || currentDestination == PdfDisplayDestination
-                                    || currentDestination == AnnouncementDestination
-                                ) {
-                                    R.drawable.arrow_back
-                                } else {
-                                    R.drawable.menu
-                                }
-                            ),
-                            contentDescription = "menu",
+                            painter = painterResource(id = R.drawable.notifications),
+                            contentDescription = "notification",
                             tint = Background
                         )
                     }
-                    Text(
-                        stringResource(id = R.string.app_name),
-                        color = Background,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    if (currentDestination != NotificationsDestination
-                        && currentDestination != AnnouncementDestination
-                    ) {
-                        IconButton(onClick = {
-                                navController.navigate(AnnouncementDestination)
-                        }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.notifications),
-                                contentDescription = "notification",
-                                tint = Background
-                            )
-                        }
-                    } else {
-                        Spacer(modifier = Modifier.padding(16.dp))
-                    }
+                } else {
+                    Spacer(modifier = Modifier.padding(16.dp))
                 }
-            },
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.bg),
-                contentDescription = "background",
-                modifier = Modifier
-                    .blur(11.dp)
-                    .fillMaxSize(),
-                contentScale = ContentScale.Crop
-            )
-            DestinationsNavHost(
-                navGraph = NavGraphs.root,
-                navController = navController,
-                engine = rememberAnimatedNavHostEngine(),
-                modifier = Modifier.padding(it),
-            )
-            if (openDialog) {
-                Dialog(
-                    onDismissRequest = {
-                        openDialog = false
-                    }
+            }
+        },
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.bg),
+            contentDescription = "background",
+            modifier = Modifier
+                .blur(11.dp)
+                .fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+        DestinationsNavHost(
+            navGraph = NavGraphs.root,
+            navController = navController,
+            engine = rememberAnimatedNavHostEngine(),
+            modifier = Modifier.padding(it),
+        )
+        if (openDialog) {
+            Dialog(
+                onDismissRequest = {
+                    openDialog = false
+                }
+            ) {
+                Card(
+                    shape = RoundedCornerShape(10.dp)
                 ) {
-                    Card(
-                        shape = RoundedCornerShape(10.dp)
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Top
                     ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Top
+                        Text(
+                            text = "Choose language",
+                            style = MaterialTheme.typography.headlineLarge
+                        )
+
+                        OutlinedButton(
+                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
+                            border = BorderStroke(0.dp, Color.Transparent),
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = {
+                                AppCompatDelegate.setApplicationLocales(
+                                    LocaleListCompat.create(
+                                        Locale("en")
+                                    )
+                                )
+                                openDialog = false
+                            }
                         ) {
-                            Text(
-                                text = "Choose language",
-                                style = MaterialTheme.typography.headlineLarge
-                            )
+                            Text(text = "English")
+                        }
 
-                            OutlinedButton(
-                                colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
-                                border = BorderStroke(0.dp, Color.Transparent),
-                                modifier = Modifier.fillMaxWidth(),
-                                onClick = {
-                                    AppCompatDelegate.setApplicationLocales(
-                                        LocaleListCompat.create(
-                                            Locale("en")
-                                        )
+                        OutlinedButton(
+                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
+                            border = BorderStroke(0.dp, Color.Transparent),
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = {
+                                AppCompatDelegate.setApplicationLocales(
+                                    LocaleListCompat.create(
+                                        Locale("es")
                                     )
-                                    openDialog = false
-                                }
-                            ) {
-                                Text(text = "English")
+                                )
+                                openDialog = false
                             }
+                        ) {
+                            Text(text = "Spanish")
+                        }
 
-                            OutlinedButton(
-                                colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
-                                border = BorderStroke(0.dp, Color.Transparent),
-                                modifier = Modifier.fillMaxWidth(),
-                                onClick = {
-                                    AppCompatDelegate.setApplicationLocales(
-                                        LocaleListCompat.create(
-                                            Locale("es")
-                                        )
+                        OutlinedButton(
+                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
+                            border = BorderStroke(0.dp, Color.Transparent),
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = {
+                                AppCompatDelegate.setApplicationLocales(
+                                    LocaleListCompat.create(
+                                        Locale("fr")
                                     )
-                                    openDialog = false
-                                }
-                            ) {
-                                Text(text = "Spanish")
+                                )
+                                openDialog = false
                             }
+                        ) {
+                            Text(text = "French")
+                        }
 
-                            OutlinedButton(
-                                colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
-                                border = BorderStroke(0.dp, Color.Transparent),
-                                modifier = Modifier.fillMaxWidth(),
-                                onClick = {
-                                    AppCompatDelegate.setApplicationLocales(
-                                        LocaleListCompat.create(
-                                            Locale("fr")
-                                        )
+                        OutlinedButton(
+                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
+                            border = BorderStroke(0.dp, Color.Transparent),
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = {
+                                AppCompatDelegate.setApplicationLocales(
+                                    LocaleListCompat.create(
+                                        Locale("pt")
                                     )
-                                    openDialog = false
-                                }
-                            ) {
-                                Text(text = "French")
+                                )
+                                openDialog = false
                             }
+                        ) {
+                            Text(text = "Portuguese")
+                        }
 
-                            OutlinedButton(
-                                colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
-                                border = BorderStroke(0.dp, Color.Transparent),
-                                modifier = Modifier.fillMaxWidth(),
-                                onClick = {
-                                    AppCompatDelegate.setApplicationLocales(
-                                        LocaleListCompat.create(
-                                            Locale("pt")
-                                        )
-                                    )
-                                    openDialog = false
-                                }
-                            ) {
-                                Text(text = "Portuguese")
+                        OutlinedButton(
+                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
+                            border = BorderStroke(0.dp, Color.Transparent),
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = {
+                                AppCompatDelegate.setApplicationLocales(
+                                    LocaleListCompat.getEmptyLocaleList()
+                                )
+                                openDialog = false
                             }
-
-                            OutlinedButton(
-                                colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
-                                border = BorderStroke(0.dp, Color.Transparent),
-                                modifier = Modifier.fillMaxWidth(),
-                                onClick = {
-                                    AppCompatDelegate.setApplicationLocales(
-                                        LocaleListCompat.getEmptyLocaleList()
-                                    )
-                                    openDialog = false
-                                }
-                            ) {
-                                Text(text = "System default")
-                            }
+                        ) {
+                            Text(text = "System default")
                         }
                     }
                 }
             }
         }
+
     }
 
 }

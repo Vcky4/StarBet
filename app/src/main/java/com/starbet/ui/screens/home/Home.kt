@@ -1,6 +1,7 @@
 package com.starbet.ui.screens.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,9 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
@@ -61,15 +61,11 @@ fun Home(navigator: DestinationsNavigator) {
 
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = stringResource(id = R.string.free),
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White,
+        Image(
+            painter = painterResource(id = R.drawable.logo1),
+            contentDescription = "logo",
             modifier = Modifier
-                .padding(start = 16.dp)
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center
+                .height(100.dp)
         )
         Spacer(modifier = Modifier.height(30.dp))
         HorizontalPager(pageCount = 2, state = pagerState) { page ->

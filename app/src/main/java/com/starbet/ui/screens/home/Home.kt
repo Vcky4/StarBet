@@ -25,6 +25,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
@@ -59,6 +60,9 @@ fun Home(navigator: DestinationsNavigator) {
     val telegram = homeViewModel.telegram.observeAsState().value
     val email = homeViewModel.email.observeAsState().value
 
+    //get screen height
+    val screenHeight = LocalConfiguration.current.screenHeightDp
+
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Spacer(modifier = Modifier.height(16.dp))
         Image(
@@ -73,7 +77,7 @@ fun Home(navigator: DestinationsNavigator) {
                 0 -> {
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(3),
-                        modifier = Modifier.heightIn(max = 400.dp)
+                        modifier = Modifier.height( screenHeight.times(0.7).dp)
                     ) {
                         items(
                             items = freeItems,
@@ -94,7 +98,7 @@ fun Home(navigator: DestinationsNavigator) {
                 else -> {
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(3),
-                        modifier = Modifier.heightIn(max = 400.dp)
+                        modifier = Modifier.height( screenHeight.times(0.7).dp)
                     ) {
                         items(
                             items = vipItems,
@@ -119,11 +123,12 @@ fun Home(navigator: DestinationsNavigator) {
         }
 
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         Row(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
-                .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Button(
                 onClick = {

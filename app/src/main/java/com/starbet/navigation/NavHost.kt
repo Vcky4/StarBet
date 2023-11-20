@@ -36,6 +36,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -168,6 +170,17 @@ fun NavHost() {
             modifier = Modifier
                 .blur(11.dp)
                 .background(Primary)
+                .drawWithCache {
+                    onDrawWithContent {
+                        drawContent()
+                        drawRect(
+                            Brush.verticalGradient(
+                                0.1f to Primary.copy(alpha = 0.9f),
+                                1f to Primary.copy(alpha = 0.4f)
+                            )
+                        )
+                    }
+                }
                 .fillMaxSize(),
             contentScale = ContentScale.Crop
         )

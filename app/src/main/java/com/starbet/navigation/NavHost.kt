@@ -57,6 +57,7 @@ import com.starbet.ui.screens.NavGraphs
 import com.starbet.ui.screens.appCurrentDestinationAsState
 import com.starbet.ui.screens.destinations.AnnouncementDestination
 import com.starbet.ui.screens.destinations.Destination
+import com.starbet.ui.screens.destinations.HomeDestination
 import com.starbet.ui.screens.destinations.NotificationsDestination
 import com.starbet.ui.screens.destinations.PdfDisplayDestination
 import com.starbet.ui.screens.home.HomeViewModel
@@ -113,70 +114,60 @@ fun NavHost() {
 
 
     Scaffold(
-        topBar = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Primary),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                IconButton(onClick = {
-                    if (currentDestination == NotificationsDestination
-                        || currentDestination == PdfDisplayDestination
-                        || currentDestination == AnnouncementDestination
-                    ) {
-                        navController.navigateUp()
-                    } else {
-                        scope.launch {
-                            drawerState.open()
-                        }
-                    }
-                }) {
-                    Icon(
-                        painter = painterResource(
-                            id = if (currentDestination == NotificationsDestination
-                                || currentDestination == PdfDisplayDestination
-                                || currentDestination == AnnouncementDestination
-                            ) {
-                                R.drawable.arrow_back
-                            } else {
-                                R.drawable.menu
-                            }
-                        ),
-                        contentDescription = "menu",
-                        tint = Background
-                    )
-                }
-                Text(
-                    stringResource(id = R.string.app_name),
-                    color = Background,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                if (currentDestination != NotificationsDestination
-                    && currentDestination != AnnouncementDestination
-                ) {
-                    IconButton(onClick = {
-                        navController.navigate(AnnouncementDestination)
-                    }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.notifications),
-                            contentDescription = "notification",
-                            tint = Background
-                        )
-                    }
-                } else {
-                    Spacer(modifier = Modifier.padding(16.dp))
-                }
-            }
-        },
+//        topBar = {
+//            Row(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .background(Primary),
+//                verticalAlignment = Alignment.CenterVertically,
+//                horizontalArrangement = Arrangement.SpaceBetween
+//            ) {
+//                if (currentDestination != HomeDestination) {
+//                    IconButton(onClick = {
+//                        navController.navigateUp()
+//                    }) {
+//                        Icon(
+//                            painter = painterResource(
+//                                id =
+//                                R.drawable.arrow_back
+//                            ),
+//                            contentDescription = "menu",
+//                            tint = Background
+//                        )
+//                    }
+//                }else{
+//                    Spacer(modifier = Modifier.padding(16.dp))
+//                }
+//                Text(
+//                    stringResource(id = R.string.app_name),
+//                    color = Background,
+//                    fontSize = 16.sp,
+//                    fontWeight = FontWeight.Bold
+//                )
+////                if (currentDestination != NotificationsDestination
+////                    && currentDestination != AnnouncementDestination
+////                ) {
+////                    IconButton(onClick = {
+////                        navController.navigate(AnnouncementDestination)
+////                    }) {
+////                        Icon(
+////                            painter = painterResource(id = R.drawable.notifications),
+////                            contentDescription = "notification",
+////                            tint = Background
+////                        )
+////                    }
+////                } else {
+//                    Spacer(modifier = Modifier.padding(16.dp))
+////                }
+//            }
+//        },
     ) {
         Image(
             painter = painterResource(id = R.drawable.bg),
             contentDescription = "background",
             modifier = Modifier
                 .blur(11.dp)
+                .background(Primary)
                 .fillMaxSize(),
             contentScale = ContentScale.Crop
         )
@@ -186,105 +177,105 @@ fun NavHost() {
             engine = rememberAnimatedNavHostEngine(),
             modifier = Modifier.padding(it),
         )
-        if (openDialog) {
-            Dialog(
-                onDismissRequest = {
-                    openDialog = false
-                }
-            ) {
-                Card(
-                    shape = RoundedCornerShape(10.dp)
-                ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Top
-                    ) {
-                        Text(
-                            text = "Choose language",
-                            style = MaterialTheme.typography.headlineLarge
-                        )
-
-                        OutlinedButton(
-                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
-                            border = BorderStroke(0.dp, Color.Transparent),
-                            modifier = Modifier.fillMaxWidth(),
-                            onClick = {
-                                AppCompatDelegate.setApplicationLocales(
-                                    LocaleListCompat.create(
-                                        Locale("en")
-                                    )
-                                )
-                                openDialog = false
-                            }
-                        ) {
-                            Text(text = "English")
-                        }
-
-                        OutlinedButton(
-                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
-                            border = BorderStroke(0.dp, Color.Transparent),
-                            modifier = Modifier.fillMaxWidth(),
-                            onClick = {
-                                AppCompatDelegate.setApplicationLocales(
-                                    LocaleListCompat.create(
-                                        Locale("es")
-                                    )
-                                )
-                                openDialog = false
-                            }
-                        ) {
-                            Text(text = "Spanish")
-                        }
-
-                        OutlinedButton(
-                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
-                            border = BorderStroke(0.dp, Color.Transparent),
-                            modifier = Modifier.fillMaxWidth(),
-                            onClick = {
-                                AppCompatDelegate.setApplicationLocales(
-                                    LocaleListCompat.create(
-                                        Locale("fr")
-                                    )
-                                )
-                                openDialog = false
-                            }
-                        ) {
-                            Text(text = "French")
-                        }
-
-                        OutlinedButton(
-                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
-                            border = BorderStroke(0.dp, Color.Transparent),
-                            modifier = Modifier.fillMaxWidth(),
-                            onClick = {
-                                AppCompatDelegate.setApplicationLocales(
-                                    LocaleListCompat.create(
-                                        Locale("pt")
-                                    )
-                                )
-                                openDialog = false
-                            }
-                        ) {
-                            Text(text = "Portuguese")
-                        }
-
-                        OutlinedButton(
-                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
-                            border = BorderStroke(0.dp, Color.Transparent),
-                            modifier = Modifier.fillMaxWidth(),
-                            onClick = {
-                                AppCompatDelegate.setApplicationLocales(
-                                    LocaleListCompat.getEmptyLocaleList()
-                                )
-                                openDialog = false
-                            }
-                        ) {
-                            Text(text = "System default")
-                        }
-                    }
-                }
-            }
-        }
+//        if (openDialog) {
+//            Dialog(
+//                onDismissRequest = {
+//                    openDialog = false
+//                }
+//            ) {
+//                Card(
+//                    shape = RoundedCornerShape(10.dp)
+//                ) {
+//                    Column(
+//                        horizontalAlignment = Alignment.CenterHorizontally,
+//                        verticalArrangement = Arrangement.Top
+//                    ) {
+//                        Text(
+//                            text = "Choose language",
+//                            style = MaterialTheme.typography.headlineLarge
+//                        )
+//
+//                        OutlinedButton(
+//                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
+//                            border = BorderStroke(0.dp, Color.Transparent),
+//                            modifier = Modifier.fillMaxWidth(),
+//                            onClick = {
+//                                AppCompatDelegate.setApplicationLocales(
+//                                    LocaleListCompat.create(
+//                                        Locale("en")
+//                                    )
+//                                )
+//                                openDialog = false
+//                            }
+//                        ) {
+//                            Text(text = "English")
+//                        }
+//
+//                        OutlinedButton(
+//                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
+//                            border = BorderStroke(0.dp, Color.Transparent),
+//                            modifier = Modifier.fillMaxWidth(),
+//                            onClick = {
+//                                AppCompatDelegate.setApplicationLocales(
+//                                    LocaleListCompat.create(
+//                                        Locale("es")
+//                                    )
+//                                )
+//                                openDialog = false
+//                            }
+//                        ) {
+//                            Text(text = "Spanish")
+//                        }
+//
+//                        OutlinedButton(
+//                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
+//                            border = BorderStroke(0.dp, Color.Transparent),
+//                            modifier = Modifier.fillMaxWidth(),
+//                            onClick = {
+//                                AppCompatDelegate.setApplicationLocales(
+//                                    LocaleListCompat.create(
+//                                        Locale("fr")
+//                                    )
+//                                )
+//                                openDialog = false
+//                            }
+//                        ) {
+//                            Text(text = "French")
+//                        }
+//
+//                        OutlinedButton(
+//                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
+//                            border = BorderStroke(0.dp, Color.Transparent),
+//                            modifier = Modifier.fillMaxWidth(),
+//                            onClick = {
+//                                AppCompatDelegate.setApplicationLocales(
+//                                    LocaleListCompat.create(
+//                                        Locale("pt")
+//                                    )
+//                                )
+//                                openDialog = false
+//                            }
+//                        ) {
+//                            Text(text = "Portuguese")
+//                        }
+//
+//                        OutlinedButton(
+//                            colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.Transparent),
+//                            border = BorderStroke(0.dp, Color.Transparent),
+//                            modifier = Modifier.fillMaxWidth(),
+//                            onClick = {
+//                                AppCompatDelegate.setApplicationLocales(
+//                                    LocaleListCompat.getEmptyLocaleList()
+//                                )
+//                                openDialog = false
+//                            }
+//                        ) {
+//                            Text(text = "System default")
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
     }
 

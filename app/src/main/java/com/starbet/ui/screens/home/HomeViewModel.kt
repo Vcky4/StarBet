@@ -10,15 +10,16 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import com.lsbt.livesportsbettingtips.data.StaticData
-import com.lsbt.livesportsbettingtips.data.db.models.TipModel
-import com.lsbt.livesportsbettingtips.datastore.Settings
-import com.lsbt.livesportsbettingtips.datastore.SettingsConstants
-import com.lsbt.livesportsbettingtips.ui.screens.admin.ContactModel
+import com.starbet.data.StaticData
+import com.starbet.data.db.models.TipModel
+import com.starbet.datastore.Settings
+import com.starbet.datastore.SettingsConstants
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -117,3 +118,21 @@ class HomeViewModel : ViewModel(), KoinComponent {
     }
 }
 
+//contact model
+@IgnoreExtraProperties
+data class ContactModel(
+    var whatsapp: String?,
+    var telegram: String?,
+    var email: String?
+) {
+    constructor() : this("", "", "")
+
+    @Exclude
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "whatsApp" to whatsapp,
+            "telegram" to telegram,
+            "email" to email
+        )
+    }
+}

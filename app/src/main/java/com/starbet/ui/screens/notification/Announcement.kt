@@ -25,10 +25,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.lsbt.livesportsbettingtips.R
-import com.lsbt.livesportsbettingtips.ui.screens.admin.AdminViewModel
-import com.lsbt.livesportsbettingtips.ui.theme.Secondary
-import com.lsbt.livesportsbettingtips.ui.theme.TextDeep
+import com.starbet.R
+import com.starbet.ui.theme.Secondary
+import com.starbet.ui.theme.TextDeep
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
@@ -36,46 +35,46 @@ import org.koin.androidx.compose.koinViewModel
 @Destination
 @Composable
 fun Announcement(navigator: DestinationsNavigator) {
-    val viewModel: AdminViewModel = koinViewModel()
-    val path = stringResource(id = R.string.announcement)
-    LaunchedEffect(key1 = Unit) {
-        viewModel.getAnnouncement(path)
-    }
-
-    val announcement = viewModel.announcement.observeAsState().value
-
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Column(
-            Modifier
-                .background(Secondary, shape = MaterialTheme.shapes.medium)
-                .fillMaxWidth(0.9f)
-                .fillMaxHeight(0.8f)
-                .scrollable(
-                    orientation = Orientation.Vertical,
-                    state = rememberScrollState()
-                )
-                .padding(vertical = 16.dp, horizontal = 8.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = announcement?.title ?: stringResource(id = R.string.announcement),
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold,
-                color = TextDeep,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = announcement?.announcement ?: "",
-                fontSize = 22.sp,
-                color = TextDeep,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxHeight(0.9f)
-                    .fillMaxWidth()
-            )
-        }
-    }
+//    val viewModel: AdminViewModel = koinViewModel()
+//    val path = stringResource(id = R.string.announcement)
+//    LaunchedEffect(key1 = Unit) {
+//        viewModel.getAnnouncement(path)
+//    }
+//
+//    val announcement = viewModel.announcement.observeAsState().value
+//
+//    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+//        Column(
+//            Modifier
+//                .background(Secondary, shape = MaterialTheme.shapes.medium)
+//                .fillMaxWidth(0.9f)
+//                .fillMaxHeight(0.8f)
+//                .scrollable(
+//                    orientation = Orientation.Vertical,
+//                    state = rememberScrollState()
+//                )
+//                .padding(vertical = 16.dp, horizontal = 8.dp),
+//            verticalArrangement = Arrangement.Center,
+//            horizontalAlignment = Alignment.CenterHorizontally
+//        ) {
+//            Text(
+//                text = announcement?.title ?: stringResource(id = R.string.announcement),
+//                fontSize = 30.sp,
+//                fontWeight = FontWeight.Bold,
+//                color = TextDeep,
+//                textAlign = TextAlign.Center,
+//                modifier = Modifier.fillMaxWidth()
+//            )
+//            Spacer(modifier = Modifier.height(16.dp))
+//            Text(
+//                text = announcement?.announcement ?: "",
+//                fontSize = 22.sp,
+//                color = TextDeep,
+//                textAlign = TextAlign.Center,
+//                modifier = Modifier
+//                    .fillMaxHeight(0.9f)
+//                    .fillMaxWidth()
+//            )
+//        }
+//    }
 }

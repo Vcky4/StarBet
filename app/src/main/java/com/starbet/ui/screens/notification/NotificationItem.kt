@@ -16,9 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.lsbt.livesportsbettingtips.data.db.models.NotificationModel
-import com.lsbt.livesportsbettingtips.ui.theme.CardColor
-import com.lsbt.livesportsbettingtips.ui.theme.TextDeep
+import com.starbet.data.db.models.NotificationModel
+import com.starbet.ui.theme.CardColor
+import com.starbet.ui.theme.TextDeep
 import java.text.DateFormat
 import java.util.Date
 

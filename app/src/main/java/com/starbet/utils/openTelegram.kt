@@ -1,4 +1,4 @@
-package com.lsbt.livesportsbettingtips.utils
+package com.starbet.utils
 
 import android.content.ActivityNotFoundException
 import android.content.Context

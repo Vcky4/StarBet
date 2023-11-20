@@ -57,11 +57,11 @@ import coil.compose.AsyncImage
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.Constants
 import com.google.firebase.messaging.ktx.messaging
-import com.lsbt.livesportsbettingtips.R
-import com.lsbt.livesportsbettingtips.ui.theme.CardColor2
-import com.lsbt.livesportsbettingtips.ui.theme.Primary
-import com.lsbt.livesportsbettingtips.ui.theme.Secondary
-import com.lsbt.livesportsbettingtips.ui.theme.TextDeep
+import com.starbet.R
+import com.starbet.ui.theme.CardColor2
+import com.starbet.ui.theme.Primary
+import com.starbet.ui.theme.Secondary
+import com.starbet.ui.theme.TextDeep
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel

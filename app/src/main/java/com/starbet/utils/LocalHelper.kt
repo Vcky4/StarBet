@@ -1,4 +1,4 @@
-package com.lsbt.livesportsbettingtips.utils
+package com.starbet.utils
 
 //object LocaleHelper {
 //    fun setLocale(context: Context, language: String): Context? {

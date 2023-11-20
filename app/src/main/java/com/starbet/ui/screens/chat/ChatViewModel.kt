@@ -23,10 +23,10 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
-import com.lsbt.livesportsbettingtips.data.db.models.ChatModel
-import com.lsbt.livesportsbettingtips.data.db.models.ConversationModel
-import com.lsbt.livesportsbettingtips.datastore.Settings
-import com.lsbt.livesportsbettingtips.datastore.SettingsConstants
+import com.starbet.data.db.models.ChatModel
+import com.starbet.data.db.models.ConversationModel
+import com.starbet.datastore.Settings
+import com.starbet.datastore.SettingsConstants
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject

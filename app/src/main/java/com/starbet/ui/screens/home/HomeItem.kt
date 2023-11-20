@@ -21,9 +21,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.lsbt.livesportsbettingtips.R
-import com.lsbt.livesportsbettingtips.data.db.models.HomeItemModel
-import com.lsbt.livesportsbettingtips.ui.theme.Primary
+import com.starbet.R
+import com.starbet.data.db.models.HomeItemModel
+import com.starbet.ui.theme.Primary
 
 @Composable
 fun HomeItem(item: HomeItemModel, onClick: () -> Unit) {

@@ -26,13 +26,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.lsbt.livesportsbettingtips.R
-import com.lsbt.livesportsbettingtips.data.db.models.TipModel
-import com.lsbt.livesportsbettingtips.ui.theme.CardColor
-import com.lsbt.livesportsbettingtips.ui.theme.CardColor2
-import com.lsbt.livesportsbettingtips.ui.theme.Primary
-import com.lsbt.livesportsbettingtips.ui.theme.Secondary
-import com.lsbt.livesportsbettingtips.ui.theme.TextDeep
+import com.starbet.R
+import com.starbet.data.db.models.TipModel
+import com.starbet.ui.theme.CardColor
+import com.starbet.ui.theme.CardColor2
+import com.starbet.ui.theme.Primary
+import com.starbet.ui.theme.Secondary
+import com.starbet.ui.theme.TextDeep
 import java.util.Date
 
 @Composable

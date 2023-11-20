@@ -43,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     packaging {
         resources {
@@ -87,7 +87,11 @@ dependencies {
     implementation(libs.livedata)
     implementation(libs.livedata.runtime)
 
+    // room
+    implementation(libs.room)
+    implementation(libs.room.ktx)
     implementation(libs.datastore.preferences)
+    ksp(libs.room.compiler)
 
     //pdf viewer
     implementation(libs.bouquet)

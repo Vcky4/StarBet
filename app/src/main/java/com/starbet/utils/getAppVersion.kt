@@ -1,4 +1,4 @@
-package com.lsbt.livesportsbettingtips.utils
+package com.starbet.utils
 
 import android.content.Context
 import android.content.pm.PackageManager

@@ -15,8 +15,8 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.Constants.TAG
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.lsbt.livesportsbettingtips.MainActivity
-import com.lsbt.livesportsbettingtips.R
+import com.starbet.MainActivity
+import com.starbet.R
 import java.util.Random
 
 class FCMService : FirebaseMessagingService() {

@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -78,7 +77,7 @@ fun Home(navigator: DestinationsNavigator) {
                 0 -> {
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(3),
-                        modifier = Modifier.height( screenHeight.times(0.65).dp)
+                        modifier = Modifier.height(screenHeight.times(0.65).dp)
                     ) {
                         items(
                             items = freeItems,
@@ -94,18 +93,15 @@ fun Home(navigator: DestinationsNavigator) {
                 else -> {
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(3),
-                        modifier = Modifier.height( screenHeight.times(0.65).dp)
+                        modifier = Modifier.height(screenHeight.times(0.65).dp)
                     ) {
                         items(
                             items = vipItems,
                         ) {
-                            val title = when (it.title) {
-                                R.string.previous_draws_results -> "Previous Draws Results"
-                                else -> "Previous Correct Score"
-                            }
+                            val title = stringResource(id = it.title)
                             HomeItem(it) {
                                 if (it.title == R.string.previous_correct_score
-                                    || it.title == R.string.previous_draws_results
+                                    || it.title == R.string.previouss_draws_vip
                                 ) {
                                     navigator.navigate(DetailScreenDestination(title))
                                 } else {

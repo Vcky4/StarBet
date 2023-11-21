@@ -37,7 +37,7 @@ fun DetailScreen(trigger: String, navigator: DestinationsNavigator) {
     }
     val tips = viewModel.tips.observeAsState(listOf()).value
     val prev = stringResource(id = R.string.previous_correct_score)
-    val prev2 = stringResource(id = R.string.previous_draws_results)
+    val prev2 = stringResource(id = R.string.previouss_draws_vip)
     val history = when (trigger) {
         prev -> tips.sortedByDescending { it.date }
         prev2 -> tips.sortedByDescending { it.date }

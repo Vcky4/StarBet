@@ -62,7 +62,7 @@ fun HomeItem(item: HomeItemModel, onClick: () -> Unit) {
                     .size(30.dp)
                     .align(Alignment.CenterHorizontally)
             )
-            Spacer(modifier = Modifier.width(10.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = stringResource(id = item.title) ,
                 fontSize = 14.sp,

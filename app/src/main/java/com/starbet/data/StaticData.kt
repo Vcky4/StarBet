@@ -60,15 +60,15 @@ object StaticData {
         ),
         HomeItemModel(
             id = 3,
-            title = R.string.odds_vip,
+            title = R.string.contact_admin,
             description = "Last Updated 2 Weeks Ago",
-            image = R.drawable.casino
+            image = R.drawable.chat,
         ),
         HomeItemModel(
             id = 4,
-            title = R.string.special_offers,
+            title = R.string.previouss_draws_vip,
             description = "Last Updated 2 Weeks Ago",
-            image = R.drawable.local_offer
+            image = R.drawable.casino
         ),
         HomeItemModel(
             id = 5,
@@ -78,9 +78,27 @@ object StaticData {
         ),
         HomeItemModel(
             id = 6,
-            title = R.string.previous_draws_results,
+            title = R.string.about_us,
+            description = "Last Updated 2 Weeks Ago",
+            image = R.drawable.local_offer
+        ),
+        HomeItemModel(
+            id = 7,
+            title = R.string.daily_100_plus_odds,
             description = "Last Updated 2 Weeks Ago",
             image = R.drawable.bar_chart
+        ),
+        HomeItemModel(
+            id = 8,
+            title = R.string.special_offers,
+            description = "Last Updated 2 Weeks Ago",
+            image = R.drawable.local_offer
+        ),
+        HomeItemModel(
+            id = 7,
+            title = R.string.rate_us,
+            description = "Last Updated 2 Weeks Ago",
+            image = R.drawable.star_rate
         ),
     )
 

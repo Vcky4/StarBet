@@ -9,27 +9,39 @@ object StaticData {
     val freeItems = listOf(
         HomeItemModel(
             id = 1,
-            title = R.string.dialy_sure_tips,
+            title = R.string.safe_tips,
             description = "Last Updated 2 Weeks Ago",
             image = R.drawable.tips_and_updates
         ),
         HomeItemModel(
             id = 2,
-            title = R.string.football_tips,
+            title = R.string.daily_3_plus_odds,
             description = "Last Updated 2 Weeks Ago",
             image = R.drawable.sports_basketball
         ),
         HomeItemModel(
             id = 3,
-            title = R.string.basketball_tips,
+            title = R.string.single_game,
             description = "Last Updated 2 Weeks Ago",
             image = R.drawable.sports_basketball
         ),
         HomeItemModel(
             id = 4,
-            title = R.string.tennis_tips,
+            title = R.string.over_under_tips,
             description = "Last Updated 2 Weeks Ago",
             image = R.drawable.sports_tennis
+        ),
+        HomeItemModel(
+            id = 5,
+            title = R.string.live_score,
+            description = "Last Updated 2 Weeks Ago",
+            image = R.drawable.sports_score,
+        ),
+        HomeItemModel(
+            id = 6,
+            title = R.string.contact_admin,
+            description = "Last Updated 2 Weeks Ago",
+            image = R.drawable.chat,
         ),
     )
 

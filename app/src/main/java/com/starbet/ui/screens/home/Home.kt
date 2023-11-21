@@ -63,6 +63,7 @@ fun Home(navigator: DestinationsNavigator) {
     //get screen height
     val screenHeight = LocalConfiguration.current.screenHeightDp
 
+
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Spacer(modifier = Modifier.height(16.dp))
         Image(
@@ -77,17 +78,12 @@ fun Home(navigator: DestinationsNavigator) {
                 0 -> {
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(3),
-                        modifier = Modifier.height( screenHeight.times(0.7).dp)
+                        modifier = Modifier.height( screenHeight.times(0.65).dp)
                     ) {
                         items(
                             items = freeItems,
                         ) {
-                            val title = when (it.title) {
-                                R.string.dialy_sure_tips -> "Daily Sure Tips"
-                                R.string.football_tips -> "Football tips"
-                                R.string.basketball_tips -> "Basketball tips"
-                                else -> "Tennis tips"
-                            }
+                            val title = stringResource(id = it.title)
                             HomeItem(it) {
                                 navigator.navigate(DetailScreenDestination(title))
                             }
@@ -98,7 +94,7 @@ fun Home(navigator: DestinationsNavigator) {
                 else -> {
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(3),
-                        modifier = Modifier.height( screenHeight.times(0.7).dp)
+                        modifier = Modifier.height( screenHeight.times(0.65).dp)
                     ) {
                         items(
                             items = vipItems,
@@ -158,7 +154,7 @@ fun Home(navigator: DestinationsNavigator) {
                     containerColor = if (pagerState.currentPage == 1) Primary else Color.Transparent
                 )
             ) {
-                Text(text = stringResource(id = R.string.free), fontSize = 20.sp)
+                Text(text = stringResource(id = R.string.vip), fontSize = 20.sp)
             }
         }
 //        LazyVerticalGrid(

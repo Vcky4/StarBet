@@ -39,10 +39,6 @@
     <string name="odds_vip">150+ odds VIP</string>
     <string name="fixed_draws">Fixed draws</string>
     <string name="correct_scores">Correct scores</string>
-    <string name="tennis_tips">Tennis tips</string>
-    <string name="basketball_tips">Basketball tips</string>
-    <string name="football_tips">Football tips</string>
-    <string name="dialy_sure_tips">Daily Sure Tips</string>
     <string name="telegram" translatable="false">Telegram</string>
     <string name="email" translatable="false">Email</string>
     <string name="whatsapp" translatable="false">WhatsApp</string>
@@ -62,4 +58,9 @@
     <string name="whats_your_name">What\'s your name</string>
     <string name="chat_with_us">Chat with us</string>
     <string name="start_typing">Start typing...</string>
+    <string name="safe_tips">Safe Tips</string>
+    <string name="daily_3_plus_odds">Daily 3+ Odds</string>
+    <string name="single_game">Single Game</string>
+    <string name="over_under_tips">Over-Under Tips</string>
+    <string name="contact_admin">Contact Admin</string>
 </resources>

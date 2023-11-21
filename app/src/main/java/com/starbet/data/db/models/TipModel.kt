@@ -14,7 +14,7 @@ data class TipModel(
     val homeScore: String,
     val awayScore: String,
     val odd: String,
-    val date: Long = System.currentTimeMillis(),
+    val date: String = "21/11/2023",
     val status: String,
     val prediction: String,
 ) {

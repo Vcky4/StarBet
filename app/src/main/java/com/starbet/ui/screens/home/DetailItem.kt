@@ -39,8 +39,8 @@ import java.util.Date
 fun DetailItem(item: TipModel, onClick: () -> Unit = {}) {
     val context = LocalContext.current
     //format date to DD/MM/YYYY
-    val time =
-        "${Date(item.date).date}/${Date(item.date).month.plus(1)}/${Date(item.date).year.plus(1900)}"
+    val time = item.date
+//        "${Date(item.date).date}/${Date(item.date).month.plus(1)}/${Date(item.date).year.plus(1900)}"
 
 
     Card(

@@ -1,5 +1,6 @@
 package com.starbet.ui.screens.home
 
+import android.icu.text.SimpleDateFormat
 import android.text.format.DateUtils
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -41,7 +42,7 @@ fun DetailScreen(trigger: String, navigator: DestinationsNavigator) {
     val history = when (trigger) {
         prev -> tips.sortedByDescending { it.date }
         prev2 -> tips.sortedByDescending { it.date }
-        else -> tips.filter { !DateUtils.isToday(it.date) }.sortedByDescending { it.date }
+        else -> tips.filter { !DateUtils.isToday(SimpleDateFormat("dd/MM/yyyy").parse(it.date).time) }.sortedByDescending { it.date }
     }
     Column {
         Row(

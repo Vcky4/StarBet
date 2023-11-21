@@ -42,7 +42,6 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
-@RootNavGraph(start = true)
 @Destination
 @Composable
 fun Home(navigator: DestinationsNavigator) {

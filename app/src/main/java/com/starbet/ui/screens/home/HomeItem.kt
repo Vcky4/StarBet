@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.starbet.R
 import com.starbet.data.db.models.HomeItemModel
+import com.starbet.ui.theme.CardColor
 import com.starbet.ui.theme.Primary
 
 @Composable
@@ -41,12 +42,12 @@ fun HomeItem(item: HomeItemModel, onClick: () -> Unit) {
         .padding(vertical = 8.dp, horizontal = 14.dp),
         shape = CircleShape,
         colors = CardDefaults.cardColors(
-            containerColor = Primary
+            containerColor = CardColor
         )
         ) {
         Column(
             modifier = Modifier
-                .background(Primary, CircleShape)
+                .background(CardColor, CircleShape)
                 .fillMaxSize()
                 .clip(CircleShape)
                 .padding(horizontal = 14.dp, vertical = 16.dp),
@@ -58,10 +59,10 @@ fun HomeItem(item: HomeItemModel, onClick: () -> Unit) {
                 contentDescription = "",
                 tint = Color.White,
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(30.dp)
                     .align(Alignment.CenterHorizontally)
             )
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(10.dp))
             Text(
                 text = stringResource(id = item.title) ,
                 fontSize = 14.sp,

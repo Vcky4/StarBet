@@ -32,9 +32,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.starbet.R
+import com.starbet.ui.screens.destinations.ChatDestination
 import com.starbet.ui.screens.destinations.DetailScreenDestination
 import com.starbet.ui.screens.destinations.VipPinDestination
 import com.starbet.ui.theme.Primary
@@ -83,7 +83,11 @@ fun Home(navigator: DestinationsNavigator) {
                         ) {
                             val title = stringResource(id = it.title)
                             HomeItem(it) {
-                                navigator.navigate(DetailScreenDestination(title))
+                                if (it.id == 6) {
+                                    navigator.navigate(ChatDestination())
+                                } else {
+                                    navigator.navigate(DetailScreenDestination(title))
+                                }
                             }
                         }
                     }
@@ -103,6 +107,8 @@ fun Home(navigator: DestinationsNavigator) {
                                     || it.title == R.string.previouss_draws_vip
                                 ) {
                                     navigator.navigate(DetailScreenDestination(title))
+                                } else if (it.id == 3) {
+                                    navigator.navigate(ChatDestination())
                                 } else {
                                     navigator.navigate(VipPinDestination(title))
                                 }
@@ -134,7 +140,11 @@ fun Home(navigator: DestinationsNavigator) {
                     containerColor = if (pagerState.currentPage == 0) Primary else Color.Transparent
                 )
             ) {
-                Text(text = stringResource(id = R.string.free), fontSize = 20.sp)
+                Text(
+                    text = stringResource(id = R.string.free),
+                    fontSize = 20.sp,
+                    color = Color.White
+                )
             }
             Button(
                 onClick = {
@@ -149,7 +159,11 @@ fun Home(navigator: DestinationsNavigator) {
                     containerColor = if (pagerState.currentPage == 1) Primary else Color.Transparent
                 )
             ) {
-                Text(text = stringResource(id = R.string.vip), fontSize = 20.sp)
+                Text(
+                    text = stringResource(id = R.string.vip),
+                    fontSize = 20.sp,
+                    color = Color.White
+                )
             }
         }
 //        LazyVerticalGrid(

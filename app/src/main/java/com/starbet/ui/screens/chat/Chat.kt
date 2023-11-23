@@ -18,10 +18,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -57,13 +59,13 @@ import coil.compose.AsyncImage
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.Constants
 import com.google.firebase.messaging.ktx.messaging
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.starbet.R
-import com.starbet.ui.theme.CardColor2
+import com.starbet.ui.theme.CardColor
 import com.starbet.ui.theme.Primary
 import com.starbet.ui.theme.Secondary
 import com.starbet.ui.theme.TextDeep
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -256,18 +258,18 @@ fun Chat(
                             modifier = Modifier
                                 .widthIn(min = 70.dp, max = 260.dp)
                                 .padding(top = 6.dp),
-                            shape = RoundedCornerShape(8.dp),
+                            shape = CircleShape,
                             colors = CardDefaults.cardColors(
                                 containerColor = if (isAdmin) {
-                                    if (it.admin) CardColor2.copy(0.7f)
+                                    if (it.admin) CardColor
                                     else Secondary.copy(0.7f)
                                 } else {
                                     if (it.admin) Secondary.copy(0.7f)
-                                    else CardColor2.copy(0.7f)
+                                    else CardColor
                                 },
                             ),
                         ) {
-                            Column {
+                            Column(Modifier.padding(horizontal = 10.dp)) {
                                 if (isAdmin && it.admin) {
                                     Icon(painter = painterResource(id = R.drawable.delete),
                                         contentDescription = "delete",
@@ -307,20 +309,22 @@ fun Chat(
                                 Text(
                                     text = it.message,
                                     fontSize = 18.sp,
-                                    color = TextDeep,
+                                    color = Color.White,
                                     textAlign = TextAlign.Start,
                                     modifier = Modifier.padding(
                                         start = 16.dp, bottom = 8.dp, end = 16.dp, top = 12.dp
                                     )
                                 )
                                 Text(
-                                    text = getTime(it.time), modifier = Modifier
+                                    text = getTime(it.time),
+                                    modifier = Modifier
                                         .align(
                                             if (it.admin && !isAdmin) Alignment.Start else Alignment.End
                                         )
                                         .padding(
                                             start = 16.dp, end = 16.dp, bottom = 12.dp
-                                        )
+                                        ),
+                                    color = Color.White.copy(alpha = 0.7f),
                                 )
                             }
                         }
@@ -329,13 +333,14 @@ fun Chat(
             }
             Row(
                 Modifier
-                    .padding(horizontal = 20.dp, vertical = 8.dp)
-                    .background(Color.White, shape = RoundedCornerShape(8.dp))
+                    .padding(horizontal = 10.dp, vertical = 8.dp)
+                    .background(Color.White, shape = CircleShape)
                     .heightIn(max = 150.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.Bottom,
 //                horizontalArrangement = Arrangement.SpaceBetween
             ) {
+                Spacer(modifier = Modifier.width(16.dp))
 //                AnimatedVisibility(visible = message.isEmpty()) {
                 IconButton(enabled = !processing, onClick = {
                     launcher.launch("image/*")
@@ -428,6 +433,7 @@ fun Chat(
                         }
                     }
                 }
+                Spacer(modifier = Modifier.width(16.dp))
             }
         }
     }

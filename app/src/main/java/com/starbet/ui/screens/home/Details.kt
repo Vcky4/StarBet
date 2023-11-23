@@ -23,11 +23,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.starbet.R
-import com.starbet.ui.screens.home.HomeViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.starbet.R
 import org.koin.androidx.compose.koinViewModel
+import java.util.Locale
 
 @Destination
 @Composable
@@ -42,7 +42,14 @@ fun DetailScreen(trigger: String, navigator: DestinationsNavigator) {
     val history = when (trigger) {
         prev -> tips.sortedByDescending { it.date }
         prev2 -> tips.sortedByDescending { it.date }
-        else -> tips.filter { !DateUtils.isToday(SimpleDateFormat("dd/MM/yyyy").parse(it.date).time) }.sortedByDescending { it.date }
+        else -> tips.filter {
+            !DateUtils.isToday(
+                SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+                    .parse(it.date).time
+            )
+        }.sortedByDescending {
+            SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).parse(it.date).time
+        }
     }
     Column {
         Row(
@@ -80,7 +87,12 @@ fun DetailScreen(trigger: String, navigator: DestinationsNavigator) {
                         modifier = Modifier.padding(start = 16.dp)
                     )
                 }
-                if (tips.none { DateUtils.isToday(it.date) }) {
+                if (tips.none {
+                        DateUtils.isToday(
+                            SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+                                .parse(it.date).time
+                        )
+                    }) {
                     item {
                         Text(
                             text = stringResource(id = R.string.no_tips_available),
@@ -95,7 +107,12 @@ fun DetailScreen(trigger: String, navigator: DestinationsNavigator) {
                     }
                 } else {
                     items(
-                        items = tips.filter { DateUtils.isToday(it.date) }
+                        items = tips.filter {
+                            DateUtils.isToday(
+                                SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
+                                    .parse(it.date).time
+                            )
+                        }
                     ) {
                         DetailItem(it)
                     }

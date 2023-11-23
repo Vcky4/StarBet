@@ -49,7 +49,7 @@ fun DetailItem(item: TipModel, onClick: () -> Unit = {}) {
             .padding(vertical = 8.dp, horizontal = 14.dp)) {
         Column(
             Modifier
-                .background(Color.White, RoundedCornerShape(8.dp))
+                .background(CardColor, RoundedCornerShape(8.dp))
         ) {
             Text(
                 text = time, fontSize = 18.sp,

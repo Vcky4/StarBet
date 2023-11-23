@@ -18,7 +18,7 @@ data class TipModel(
     val status: String,
     val prediction: String,
 ) {
-    constructor() : this("", "", "", "", "", "", "", 0, "", "")
+    constructor() : this("", "", "", "", "", "", "", "21/11/2023", "", "")
 
     @Exclude
     fun toMap(): Map<String, Any?> {

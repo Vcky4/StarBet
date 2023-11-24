@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -20,15 +22,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -36,29 +37,30 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.starbet.R
 import com.starbet.ui.screens.destinations.ChatDestination
 import com.starbet.ui.theme.Primary
 import com.starbet.ui.theme.Secondary
 import com.starbet.ui.theme.TextDeep
-import com.starbet.utils.sendMail
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.starbet.ui.screens.home.HomeViewModel
-import org.koin.androidx.compose.koinViewModel
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination
 @Composable
 fun VipPin(trigger: String, navigator: DestinationsNavigator) {
-    val homeViewModel: HomeViewModel = koinViewModel()
     var pin by remember {
         mutableStateOf("")
     }
-    val context = LocalContext.current
-    val whatsapp = homeViewModel.whatsApp.observeAsState("").value
-    val telegram = homeViewModel.telegram.observeAsState("").value
-    val email = homeViewModel.email.observeAsState("").value
+    var isInvalid by remember {
+        mutableStateOf(false)
+    }
+
+    LaunchedEffect(key1 = isInvalid) {
+        delay(2000)
+        isInvalid = false
+    }
     Box {
         Box(
             modifier = Modifier
@@ -140,6 +142,28 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
                         )
                     },
                 )
+                Spacer(modifier = Modifier.height(10.dp))
+                if (isInvalid) {
+                    Text(text = stringResource(id = R.string.invalid_pin), color = TextDeep)
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+                Button(
+                    onClick = { isInvalid = !isInvalid },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = TextDeep,
+                        contentColor = Color.White
+                    ),
+                    modifier = Modifier.padding(horizontal = 26.dp),
+                    enabled = pin.length > 2
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.access),
+                        fontSize = 18.sp,
+                        color = Color.White,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
                 Spacer(modifier = Modifier.height(20.dp))
                 Text(
                     text = stringResource(id = R.string.dont_have_a_vip_pin),
@@ -172,26 +196,6 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
 //                        )
 //                    }
                     val appName = stringResource(id = R.string.app_name)
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.clickable {
-                            context.sendMail(
-                                email,
-                                appName
-                            )
-                        }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.outline_email),
-                            contentDescription = "Email",
-                            tint = TextDeep
-                        )
-                        Text(
-                            text = "Email",
-                            fontSize = 18.sp,
-                            color = TextDeep,
-                            textAlign = TextAlign.Center,
-                        )
-                    }
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.clickable {

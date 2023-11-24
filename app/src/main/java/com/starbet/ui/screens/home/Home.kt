@@ -2,6 +2,7 @@ package com.starbet.ui.screens.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,6 +36,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.starbet.R
 import com.starbet.ui.screens.destinations.ChatDestination
+import com.starbet.ui.screens.destinations.ConversationsDestination
 import com.starbet.ui.screens.destinations.DetailScreenDestination
 import com.starbet.ui.screens.destinations.VipPinDestination
 import com.starbet.ui.theme.Primary
@@ -69,6 +71,9 @@ fun Home(navigator: DestinationsNavigator) {
             contentDescription = "logo",
             modifier = Modifier
                 .height(100.dp)
+                .clickable {
+                    navigator.navigate(ConversationsDestination())
+                }
         )
         Spacer(modifier = Modifier.height(30.dp))
         HorizontalPager(pageCount = 2, state = pagerState) { page ->

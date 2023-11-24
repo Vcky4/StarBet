@@ -19,20 +19,20 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.starbet.R
 import com.starbet.ui.screens.destinations.ChatDestination
 import com.starbet.ui.theme.CardColor
 import com.starbet.ui.theme.Primary
 import com.starbet.ui.theme.TextDeep
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.starbet.ui.screens.chat.ChatViewModel
 import org.koin.androidx.compose.koinViewModel
 import java.text.DateFormat
 
@@ -47,6 +47,17 @@ fun Conversations(navigator: DestinationsNavigator) {
     val conversations = viewModel.conversations.observeAsState(listOf()).value
 
     LazyColumn {
+        if (conversations.isEmpty()) {
+            item {
+                Text(
+                    text = "No conversations", Modifier
+                        .fillMaxWidth()
+                        .padding(top=100.dp),
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
         items(
             items = conversations
         ) {

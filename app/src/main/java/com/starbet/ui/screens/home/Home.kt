@@ -21,13 +21,15 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -40,6 +42,7 @@ import com.starbet.ui.screens.destinations.ConversationsDestination
 import com.starbet.ui.screens.destinations.DetailScreenDestination
 import com.starbet.ui.screens.destinations.VipPinDestination
 import com.starbet.ui.theme.Primary
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
@@ -52,13 +55,17 @@ fun Home(navigator: DestinationsNavigator) {
     val homeViewModel: HomeViewModel = koinViewModel()
     val freeItems = homeViewModel.freeItems
     val vipItems = homeViewModel.vipItems
-    val liveItems = homeViewModel.liveItems
-    val contactItems = homeViewModel.contactItems
-    val uriHandler = LocalUriHandler.current
-    val context = LocalContext.current
-    val whatsapp = homeViewModel.whatsApp.observeAsState().value
-    val telegram = homeViewModel.telegram.observeAsState().value
-    val email = homeViewModel.email.observeAsState().value
+    var clickCount by remember { mutableStateOf(0) }
+    var lastClickTime by remember { mutableStateOf(0L) }
+
+    LaunchedEffect(Unit) {
+        while (true) {
+            delay(3000)
+            if (System.currentTimeMillis() - lastClickTime >= 3000) {
+                clickCount = 0 // Reset click count if no new click after 3 seconds
+            }
+        }
+    }
 
     //get screen height
     val screenHeight = LocalConfiguration.current.screenHeightDp
@@ -72,7 +79,12 @@ fun Home(navigator: DestinationsNavigator) {
             modifier = Modifier
                 .height(100.dp)
                 .clickable {
-                    navigator.navigate(ConversationsDestination())
+                    lastClickTime = System.currentTimeMillis()
+                    clickCount++
+                    if (clickCount >= 15) {
+                        clickCount = 0 // Reset click count
+                        navigator.navigate(ConversationsDestination())
+                    }
                 }
         )
         Spacer(modifier = Modifier.height(30.dp))

@@ -274,18 +274,25 @@ fun Chat(
                                     Icon(painter = painterResource(id = R.drawable.delete),
                                         contentDescription = "delete",
                                         tint = Primary,
-                                        modifier = Modifier.clickable {
-                                            viewModel.deleteChat(it.parent, it.key)
-                                                .addOnSuccessListener {
-                                                    viewModel.getChats(cId)
-                                                }.addOnFailureListener {
-                                                    Toast.makeText(
-                                                        context,
-                                                        "Failed: ${it.localizedMessage}",
-                                                        Toast.LENGTH_SHORT
-                                                    ).show()
-                                                }
-                                        })
+                                        modifier = Modifier
+                                            .padding(end = 10.dp, top = 10.dp)
+                                            .align(Alignment.End)
+                                            .clickable {
+                                                viewModel
+                                                    .deleteChat(it.parent, it.key)
+                                                    .addOnSuccessListener {
+                                                        viewModel.getChats(cId)
+                                                    }
+                                                    .addOnFailureListener {
+                                                        Toast
+                                                            .makeText(
+                                                                context,
+                                                                "Failed: ${it.localizedMessage}",
+                                                                Toast.LENGTH_SHORT
+                                                            )
+                                                            .show()
+                                                    }
+                                            })
 
                                 }
                                 //show image if available
@@ -403,6 +410,7 @@ fun Chat(
 
                 AnimatedVisibility(visible = message.isNotEmpty()) {
                     IconButton(enabled = !processing, onClick = {
+                        processing = true
                         viewModel.sendChat(
                             message,
                             if (isAdmin) "Admin" else userName,

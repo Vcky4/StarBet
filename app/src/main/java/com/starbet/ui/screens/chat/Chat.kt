@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
@@ -270,31 +271,6 @@ fun Chat(
                             ),
                         ) {
                             Column(Modifier.padding(horizontal = 10.dp)) {
-                                if (isAdmin && it.admin) {
-                                    Icon(painter = painterResource(id = R.drawable.delete),
-                                        contentDescription = "delete",
-                                        tint = Primary,
-                                        modifier = Modifier
-                                            .padding(end = 10.dp, top = 10.dp)
-                                            .align(Alignment.End)
-                                            .clickable {
-                                                viewModel
-                                                    .deleteChat(it.parent, it.key)
-                                                    .addOnSuccessListener {
-                                                        viewModel.getChats(cId)
-                                                    }
-                                                    .addOnFailureListener {
-                                                        Toast
-                                                            .makeText(
-                                                                context,
-                                                                "Failed: ${it.localizedMessage}",
-                                                                Toast.LENGTH_SHORT
-                                                            )
-                                                            .show()
-                                                    }
-                                            })
-
-                                }
                                 //show image if available
                                 if (it.imageUrl.isNotEmpty()) {
                                     Box {
@@ -322,8 +298,7 @@ fun Chat(
                                         start = 16.dp, bottom = 8.dp, end = 16.dp, top = 12.dp
                                     )
                                 )
-                                Text(
-                                    text = getTime(it.time),
+                                Row(
                                     modifier = Modifier
                                         .align(
                                             if (it.admin && !isAdmin) Alignment.Start else Alignment.End
@@ -331,8 +306,37 @@ fun Chat(
                                         .padding(
                                             start = 16.dp, end = 16.dp, bottom = 12.dp
                                         ),
-                                    color = Color.White.copy(alpha = 0.7f),
-                                )
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = getTime(it.time),
+                                        color = Color.White.copy(alpha = 0.7f),
+                                    )
+                                    if (isAdmin && it.admin) {
+                                        Icon(painter = painterResource(id = R.drawable.delete),
+                                            contentDescription = "delete",
+                                            tint = Primary,
+                                            modifier = Modifier
+                                                .padding(start = 5.dp)
+                                                .clickable {
+                                                    viewModel
+                                                        .deleteChat(it.parent, it.key)
+                                                        .addOnSuccessListener {
+                                                            viewModel.getChats(cId)
+                                                        }
+                                                        .addOnFailureListener {
+                                                            Toast
+                                                                .makeText(
+                                                                    context,
+                                                                    "Failed: ${it.localizedMessage}",
+                                                                    Toast.LENGTH_SHORT
+                                                                )
+                                                                .show()
+                                                        }
+                                                })
+
+                                    }
+                                }
                             }
                         }
                     }
@@ -430,7 +434,8 @@ fun Chat(
                     }) {
                         if (processing) {
                             CircularProgressIndicator(
-                                color = Primary
+                                color = Primary,
+                                modifier = Modifier.size(30.dp)
                             )
                         } else if (!uploadLoading) {
                             Icon(

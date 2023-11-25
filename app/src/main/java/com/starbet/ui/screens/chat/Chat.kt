@@ -163,7 +163,7 @@ fun Chat(
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column(
                 Modifier
-                    .background(Secondary, shape = MaterialTheme.shapes.medium)
+                    .background(CardColor, shape = MaterialTheme.shapes.medium)
                     .fillMaxWidth(0.9f)
                     .padding(vertical = 50.dp, horizontal = 16.dp),
                 verticalArrangement = Arrangement.Center,
@@ -181,7 +181,7 @@ fun Chat(
                 Text(
                     text = stringResource(id = R.string.whats_your_name),
                     fontSize = 18.sp,
-                    color = Primary,
+                    color = Color.White,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )

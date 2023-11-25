@@ -41,6 +41,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.starbet.R
 import com.starbet.ui.screens.destinations.ChatDestination
+import com.starbet.ui.theme.CardColor
 import com.starbet.ui.theme.Primary
 import com.starbet.ui.theme.Secondary
 import com.starbet.ui.theme.TextDeep
@@ -92,7 +93,7 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column(
                 Modifier
-                    .background(Secondary, shape = shapes.medium)
+                    .background(CardColor, shape = shapes.medium)
                     .fillMaxWidth(0.9f)
                     .padding(vertical = 30.dp, horizontal = 16.dp),
                 verticalArrangement = Arrangement.Center,
@@ -102,7 +103,7 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
                     text = stringResource(id = R.string.vip_pin),
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
-                    color = TextDeep,
+                    color = Color.White,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -110,7 +111,7 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
                 Text(
                     text = stringResource(id = R.string.please_enter_your_vip_pin_to_access_the_vip_tips),
                     fontSize = 18.sp,
-                    color = Primary,
+                    color = Color.White,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -127,7 +128,7 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
                         unfocusedIndicatorColor = Color.Transparent,
                         disabledIndicatorColor = Color.Transparent,
                         errorIndicatorColor = Color.Transparent,
-                        cursorColor = Primary,
+                        cursorColor = Color.White,
                         textColor = TextDeep
                     ),
                     textStyle = TextStyle(fontSize = 18.sp, textAlign = TextAlign.Center),
@@ -166,9 +167,9 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
                 }
                 Spacer(modifier = Modifier.height(20.dp))
                 Text(
-                    text = stringResource(id = R.string.dont_have_a_vip_pin),
+                    text = stringResource(id = R.string.contact_admin_for),
                     fontSize = 18.sp,
-                    color = TextDeep,
+                    color = Color.White,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -204,12 +205,12 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
                         Icon(
                             painter = painterResource(id = R.drawable.chat),
                             contentDescription = stringResource(id = R.string.chat_with_us),
-                            tint = TextDeep
+                            tint = Color.White
                         )
                         Text(
                             text = stringResource(id = R.string.chat_with_us),
                             fontSize = 18.sp,
-                            color = TextDeep,
+                            color = Color.White,
                             textAlign = TextAlign.Center,
                         )
                     }

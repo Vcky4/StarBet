@@ -32,7 +32,6 @@ fun PdfDisplay() {
         state = pdfState,
         modifier = Modifier
             .fillMaxSize()
-            .background(color = CardColor2)
     )
 }
 

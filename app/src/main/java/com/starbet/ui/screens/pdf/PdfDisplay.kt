@@ -16,24 +16,24 @@ import com.rizzi.bouquet.rememberVerticalPdfReaderState
 
 @Destination
 @Composable
-fun PdfDisplay(trigger: String) {
-//    val pdfState = rememberVerticalPdfReaderState(
-//        resource = ResourceType.Asset(chooseDoc(trigger)),
-//        isZoomEnable = true
-//    )
-//
-//    LaunchedEffect(key1 = pdfState.error) {
-//        pdfState.error?.let {
-//            // Show error
-//        }
-//    }
-//
-//    VerticalPDFReader(
-//        state = pdfState,
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .background(color = CardColor2)
-//    )
+fun PdfDisplay() {
+    val pdfState = rememberVerticalPdfReaderState(
+        resource = ResourceType.Asset(R.raw.privacy),
+        isZoomEnable = true
+    )
+
+    LaunchedEffect(key1 = pdfState.error) {
+        pdfState.error?.let {
+            // Show error
+        }
+    }
+
+    VerticalPDFReader(
+        state = pdfState,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = CardColor2)
+    )
 }
 
 //fun chooseDoc(trigger: String): Int =

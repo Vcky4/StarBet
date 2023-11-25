@@ -40,6 +40,7 @@ import com.starbet.R
 import com.starbet.ui.screens.destinations.ChatDestination
 import com.starbet.ui.screens.destinations.ConversationsDestination
 import com.starbet.ui.screens.destinations.DetailScreenDestination
+import com.starbet.ui.screens.destinations.PdfDisplayDestination
 import com.starbet.ui.screens.destinations.VipPinDestination
 import com.starbet.ui.theme.Primary
 import kotlinx.coroutines.delay
@@ -126,6 +127,8 @@ fun Home(navigator: DestinationsNavigator) {
                                     navigator.navigate(DetailScreenDestination(title))
                                 } else if (it.id == 3) {
                                     navigator.navigate(ChatDestination())
+                                } else if(it.id == 6){
+                                    navigator.navigate(PdfDisplayDestination())
                                 } else {
                                     navigator.navigate(VipPinDestination(title))
                                 }

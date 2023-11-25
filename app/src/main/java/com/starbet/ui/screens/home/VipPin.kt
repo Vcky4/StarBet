@@ -42,8 +42,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.starbet.R
 import com.starbet.ui.screens.destinations.ChatDestination
 import com.starbet.ui.theme.CardColor
-import com.starbet.ui.theme.Primary
-import com.starbet.ui.theme.Secondary
 import com.starbet.ui.theme.TextDeep
 import kotlinx.coroutines.delay
 

@@ -100,7 +100,4 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.gif)
 
-    //webView
-    implementation (libs.accompanist.webview)
-
 }

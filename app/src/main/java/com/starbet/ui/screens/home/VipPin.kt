@@ -57,7 +57,7 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
     }
 
     LaunchedEffect(key1 = isInvalid) {
-        delay(2000)
+        delay(4000)
         isInvalid = false
     }
     Box {
@@ -98,7 +98,7 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(id = R.string.vip_pin),
+                    text = stringResource(id = R.string.input_your_vip_pin),
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
@@ -106,14 +106,6 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = stringResource(id = R.string.please_enter_your_vip_pin_to_access_the_vip_tips),
-                    fontSize = 18.sp,
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(modifier = Modifier.height(10.dp))
                 TextField(
                     value = pin,
                     onValueChange = { pin = it },
@@ -143,7 +135,7 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 if (isInvalid) {
-                    Text(text = stringResource(id = R.string.invalid_pin), color = TextDeep)
+                    Text(text = stringResource(id = R.string.contact_admin_for), color = TextDeep)
                 }
                 Spacer(modifier = Modifier.height(10.dp))
                 Button(
@@ -164,14 +156,6 @@ fun VipPin(trigger: String, navigator: DestinationsNavigator) {
                     )
                 }
                 Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = stringResource(id = R.string.contact_admin_for),
-                    fontSize = 18.sp,
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(modifier = Modifier.height(10.dp))
                 Row(
                     Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,

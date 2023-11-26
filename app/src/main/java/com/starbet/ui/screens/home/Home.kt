@@ -40,6 +40,7 @@ import com.starbet.R
 import com.starbet.ui.screens.destinations.ChatDestination
 import com.starbet.ui.screens.destinations.ConversationsDestination
 import com.starbet.ui.screens.destinations.DetailScreenDestination
+import com.starbet.ui.screens.destinations.MyWebViewDestination
 import com.starbet.ui.screens.destinations.PdfDisplayDestination
 import com.starbet.ui.screens.destinations.VipPinDestination
 import com.starbet.ui.theme.Primary
@@ -103,7 +104,9 @@ fun Home(navigator: DestinationsNavigator) {
                             HomeItem(it) {
                                 if (it.id == 6) {
                                     navigator.navigate(ChatDestination())
-                                } else {
+                                } else if(it.id==5){
+                                    navigator.navigate(MyWebViewDestination(url = "https://www.livescore.com"))
+                                }else {
                                     navigator.navigate(DetailScreenDestination(title))
                                 }
                             }

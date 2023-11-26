@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,13 +18,12 @@ import com.ramcosta.composedestinations.annotation.Destination
 @Composable
 @Destination
 fun MyWebView(
-    modifier: Modifier = Modifier,
     url: String,
 ) {
     var backEnabled by remember { mutableStateOf(false) }
     var webView: WebView? = null
     AndroidView(
-        modifier = modifier,
+        modifier = Modifier.fillMaxSize(),
         factory = { context ->
             WebView(context).apply {
                 layoutParams = ViewGroup.LayoutParams(

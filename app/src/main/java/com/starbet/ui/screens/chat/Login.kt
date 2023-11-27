@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.starbet.R
+import com.starbet.ui.theme.CardColor
 import com.starbet.ui.theme.Primary
 import com.starbet.ui.theme.Secondary
 import com.starbet.ui.theme.TextDeep
@@ -52,14 +53,14 @@ fun Login(viewModel: ChatViewModel) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(
             Modifier
-                .background(Secondary, shape = MaterialTheme.shapes.medium)
+                .background(CardColor, shape = MaterialTheme.shapes.medium)
                 .fillMaxWidth(0.9f)
                 .padding(vertical = 50.dp, horizontal = 16.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(id = R.string.get_yourself_in),
+                text = stringResource(id = R.string.authenticate),
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextDeep,
@@ -67,14 +68,7 @@ fun Login(viewModel: ChatViewModel) {
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = stringResource(id = R.string.please_enter_your),
-                fontSize = 18.sp,
-                color = Primary,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.height(10.dp))
+
             TextField(
                 value = pin,
                 onValueChange = { pin = it },

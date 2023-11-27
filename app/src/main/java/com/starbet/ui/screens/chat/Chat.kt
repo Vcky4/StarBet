@@ -259,7 +259,7 @@ fun Chat(
                             modifier = Modifier
                                 .widthIn(min = 70.dp, max = 260.dp)
                                 .padding(top = 6.dp),
-                            shape = RoundedCornerShape(20),
+                            shape = RoundedCornerShape(30.dp),
                             colors = CardDefaults.cardColors(
                                 containerColor = if (isAdmin) {
                                     if (it.admin) CardColor

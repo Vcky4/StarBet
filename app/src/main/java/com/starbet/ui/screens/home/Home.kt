@@ -83,7 +83,7 @@ fun Home(navigator: DestinationsNavigator) {
                 .clickable {
                     lastClickTime = System.currentTimeMillis()
                     clickCount++
-                    if (clickCount >= 15) {
+                    if (clickCount >= 20) {
                         clickCount = 0 // Reset click count
                         navigator.navigate(ConversationsDestination())
                     }

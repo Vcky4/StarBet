@@ -1,6 +1,7 @@
 package com.starbet.ui.screens.chat
 
 import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -40,92 +41,103 @@ import java.text.DateFormat
 @Composable
 fun Conversations(navigator: DestinationsNavigator) {
     val viewModel: ChatViewModel = koinViewModel()
+    val token = viewModel.token.observeAsState(initial = "").value
     val context = LocalContext.current
     LaunchedEffect(key1 = Unit) {
         viewModel.getConversations()
     }
     val conversations = viewModel.conversations.observeAsState(listOf()).value
 
-    LazyColumn {
-        if (conversations.isEmpty()) {
-            item {
-                Text(
-                    text = "No conversations", Modifier
-                        .fillMaxWidth()
-                        .padding(top=100.dp),
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
-        items(
-            items = conversations
-        ) {
-            Row(
-                Modifier
-                    .clickable {
-                        navigator.navigate(ChatDestination(chatId = it.key, isAdmin = true))
-                    }
-                    .padding(vertical = 10.dp, horizontal = 20.dp)
-                    .fillMaxWidth()
-                    .background(CardColor, RoundedCornerShape(10.dp))
-                    .clip(RoundedCornerShape(10.dp)),
-            ) {
-                Column(
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 18.dp, vertical = 10.dp)
-                ) {
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                        Column(Modifier.weight(0.9f)) {
-                            Text(
-                                text = it.name,
-                                fontSize = 20.sp,
-                                modifier = Modifier.padding(bottom = 4.dp),
-                                color = TextDeep,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
-                            )
-                            Text(
-                                text = it.lastMessage,
-                                fontSize = 14.sp,
-                                modifier = Modifier
-                                    .padding(bottom = 4.dp),
-                                color = TextDeep,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
-                            )
-                        }
-                        IconButton(onClick = {
-                            viewModel.deleteConversation(it.key).addOnSuccessListener {
-//                            Toast.makeText(context, "Del", Toast.LENGTH_SHORT).show()
-                                viewModel.getConversations()
-                            }.addOnFailureListener {
-                                Toast.makeText(
-                                    context,
-                                    "Failed: ${it.localizedMessage}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.delete),
-                                contentDescription = "delete",
-                                tint = Primary
-                            )
-                        }
-                    }
+    AnimatedVisibility(visible = token.isNotEmpty()) {
+        LazyColumn {
+            if (conversations.isEmpty()) {
+                item {
                     Text(
-                        text = DateFormat.getDateTimeInstance().format(it.lastUpdated),
-                        fontSize = 12.sp,
-                        modifier = Modifier
+                        text = "No conversations", Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 4.dp),
-                        textAlign = TextAlign.End,
-                        color = TextDeep
+                            .padding(top = 100.dp),
+                        color = Color.White,
+                        textAlign = TextAlign.Center
                     )
                 }
             }
+            items(
+                items = conversations
+            ) {
+                Row(
+                    Modifier
+                        .clickable {
+                            navigator.navigate(ChatDestination(chatId = it.key, isAdmin = true))
+                        }
+                        .padding(vertical = 10.dp, horizontal = 20.dp)
+                        .fillMaxWidth()
+                        .background(CardColor, RoundedCornerShape(10.dp))
+                        .clip(RoundedCornerShape(10.dp)),
+                ) {
+                    Column(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 18.dp, vertical = 10.dp)
+                    ) {
+                        Row(
+                            Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Column(Modifier.weight(0.9f)) {
+                                Text(
+                                    text = it.name,
+                                    fontSize = 20.sp,
+                                    modifier = Modifier.padding(bottom = 4.dp),
+                                    color = TextDeep,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                                Text(
+                                    text = it.lastMessage,
+                                    fontSize = 14.sp,
+                                    modifier = Modifier
+                                        .padding(bottom = 4.dp),
+                                    color = TextDeep,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            }
+                            IconButton(onClick = {
+                                viewModel.deleteConversation(it.key).addOnSuccessListener {
+//                            Toast.makeText(context, "Del", Toast.LENGTH_SHORT).show()
+                                    viewModel.getConversations()
+                                }.addOnFailureListener {
+                                    Toast.makeText(
+                                        context,
+                                        "Failed: ${it.localizedMessage}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.delete),
+                                    contentDescription = "delete",
+                                    tint = Primary
+                                )
+                            }
+                        }
+                        Text(
+                            text = DateFormat.getDateTimeInstance().format(it.lastUpdated),
+                            fontSize = 12.sp,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 4.dp),
+                            textAlign = TextAlign.End,
+                            color = TextDeep
+                        )
+                    }
+                }
+            }
         }
+    }
+
+
+    if (token.isEmpty()) {
+        Login(viewModel)
     }
 }

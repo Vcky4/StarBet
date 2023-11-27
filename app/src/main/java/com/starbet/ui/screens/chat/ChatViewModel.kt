@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -35,7 +36,7 @@ import org.koin.core.component.inject
 
 class ChatViewModel(private val context: Application) : ViewModel(), KoinComponent {
     private val database: DatabaseReference = Firebase.database.reference
-
+    private val _token = MutableLiveData<String>()
     // Create a storage reference from our app
     var storageRef = Firebase.storage.reference
     private val settings: Settings by inject()
@@ -55,7 +56,12 @@ class ChatViewModel(private val context: Application) : ViewModel(), KoinCompone
     val chatId = _chatId
     val chats = _chats
     val conversations = _conversations
+    val token: LiveData<String> = _token
 
+    val getPassword = database.child("password").get()
+    fun login(token: String) {
+        _token.value = token
+    }
 
     private fun sendNotification(title: String, body: String, to: String) {
         Log.e("TAG", "sendNotification")

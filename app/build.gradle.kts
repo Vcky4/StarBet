@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.starbet"
+    namespace = "com.starbettipz"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.starbet"
+        applicationId = "com.starbettipz"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

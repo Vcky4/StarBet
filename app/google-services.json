@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "1024959267182",
-    "project_id": "star-bet",
-    "storage_bucket": "star-bet.appspot.com"
+    "project_number": "1010660744942",
+    "project_id": "starbet-3ab4c",
+    "storage_bucket": "starbet-3ab4c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1024959267182:android:655bd72481795b8cd8017f",
+        "mobilesdk_app_id": "1:1010660744942:android:e5a4f09c04720feb5cddff",
         "android_client_info": {
-          "package_name": "com.starbet"
+          "package_name": "com.starbettipz"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDjkC8dimxqKmtmwpteu6o7J4esn4tbW-I"
+          "current_key": "AIzaSyCjCcyX781b41qq4Ts-JvxlSEkh0GJXYBU"
         }
       ],
       "services": {

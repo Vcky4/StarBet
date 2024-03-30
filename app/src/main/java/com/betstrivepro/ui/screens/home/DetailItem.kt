@@ -30,6 +30,7 @@ import com.betstrivepro.R
 import com.betstrivepro.data.db.models.TipModel
 import com.betstrivepro.ui.theme.CardColor
 import com.betstrivepro.ui.theme.CardColor2
+import com.betstrivepro.ui.theme.Prep
 import com.betstrivepro.ui.theme.Primary
 import com.betstrivepro.ui.theme.Secondary
 import com.betstrivepro.ui.theme.TextDeep
@@ -52,7 +53,7 @@ fun DetailItem(item: TipModel, onClick: () -> Unit = {}) {
         ) {
             Text(
                 text = time, fontSize = 18.sp,
-                color = Secondary,
+                color = Prep,
                 modifier = Modifier
                     .padding(vertical = 4.dp, horizontal = 14.dp)
                     .align(Alignment.End),
@@ -147,14 +148,14 @@ fun DetailItem(item: TipModel, onClick: () -> Unit = {}) {
                 ) {
                     Card(
                         colors = CardDefaults.cardColors(
-                            containerColor = CardColor,
+                            containerColor = CardColor2,
                         ),
                         modifier = Modifier,
                         shape = RoundedCornerShape(5.dp)
                     ) {
                         Text(
                             text = item.prediction, fontSize = 14.sp,
-                            color = TextDeep,
+                            color = Prep,
                             modifier = Modifier
                                 .padding(vertical = 6.dp, horizontal = 6.dp)
                         )
@@ -168,7 +169,7 @@ fun DetailItem(item: TipModel, onClick: () -> Unit = {}) {
                     ) {
                         Text(
                             text = item.odd, fontSize = 14.sp,
-                            color = TextDeep,
+                            color = Prep,
                             textAlign = TextAlign.End,
                             modifier = Modifier
                                 .padding(vertical = 6.dp, horizontal = 6.dp)

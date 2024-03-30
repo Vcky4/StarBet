@@ -3,55 +3,23 @@
 
     <string name="free">Free</string>
     <string name="vip">VIP</string>
-    <string name="live">Live</string>
     <string name="contact_us">Contact Us</string>
     <string name="back">back</string>
     <string name="today">Today</string>
     <string name="no_tips_available">No tips available</string>
     <string name="history">History</string>
     <string name="no_tips_history_available">No tips history available</string>
-    <string name="vip_pin">VIP pin</string>
-    <string name="please_enter_your_vip_pin_to_access_the_vip_tips">Please enter your VIP pin to access the VIP tips</string>
     <string name="enter_your_vip_pin">Enter your VIP pin</string>
-    <string name="dont_have_a_vip_pin">Don\'t have a VIP pin? Get one now contact us on</string>
-    <string name="get_yourself_in">Get yourself in</string>
-    <string name="please_enter_your">Please enter your pin to continue</string>
     <string name="enter_your_pin">Enter your pin</string>
     <string name="access">Access</string>
-    <string name="click_field_to">Click field to edit</string>
-    <string name="enter_whatsapp_number">Enter WhatsApp Number</string>
-    <string name="enter_email_address">Enter Email Address</string>
-    <string name="enter_telegram_username">Enter Telegram username</string>
-    <string name="save">Save</string>
-    <string name="prediction">Prediction</string>
-    <string name="odd">odd</string>
-    <string name="flag">Flag</string>
-    <string name="home">Home</string>
-    <string name="league">League</string>
-    <string name="cancel">Cancel</string>
-    <string name="delete">delete</string>
-    <string name="add">Add</string>
     <string name="live_match">Live match</string>
     <string name="live_score">Live Score</string>
     <string name="previous_correct_score">Previous Correct Score VIP</string>
     <string name="special_offers">Special VIP offers</string>
     <string name="fixed_draws">Fixed Draws VIP</string>
     <string name="correct_scores">Correct Scores VIP</string>
-    <string name="telegram" translatable="false">Telegram</string>
     <string name="email" translatable="false">Email</string>
-    <string name="whatsapp" translatable="false">WhatsApp</string>
     <string name="about_us">About Us</string>
-    <string name="privacy_policy">Privacy Policy</string>
-    <string name="terms_and_conditions">Terms And Conditions</string>
-    <string name="set_langauge">Set Langauge</string>
-    <string name="post_a_notification">Post a notification</string>
-    <string name="please_enter_the_details">Please enter the details</string>
-    <string name="body">Write body</string>
-    <string name="what_the_title">WHat\'s the title</string>
-    <string name="post">Post</string>
-    <string name="announcement">announcement</string>
-    <string name="type_it_here">Type it here</string>
-    <string name="post_an_announcement">Post an announcement</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="whats_your_name">What\'s your name</string>
     <string name="chat_with_us">Chat with us</string>
@@ -64,7 +32,6 @@
     <string name="previouss_draws_vip">Previous Draws VIP</string>
     <string name="daily_100_plus_odds">Daily 100+ Odds VIP</string>
     <string name="rate_us">Rate Us</string>
-    <string name="invalid_pin">Invaid pin</string>
     <string name="contact_admin_for">Contact the admin for your verified pin</string>
     <string name="input_your_vip_pin">Input your vip pin</string>
     <string name="authenticate">Authenticate</string>

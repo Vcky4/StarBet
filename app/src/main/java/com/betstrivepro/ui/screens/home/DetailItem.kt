@@ -56,7 +56,7 @@ fun DetailItem(item: TipModel, onClick: () -> Unit = {}) {
                 color = Prep,
                 modifier = Modifier
                     .padding(vertical = 4.dp, horizontal = 14.dp)
-                    .align(Alignment.End),
+                    .align(Alignment.Start),
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -143,7 +143,7 @@ fun DetailItem(item: TipModel, onClick: () -> Unit = {}) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    horizontalArrangement = Arrangement.SpaceEvenly,
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Card(

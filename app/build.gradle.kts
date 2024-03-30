@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.starbettipz"
+    namespace = "com.betstrivepro"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.starbettipz"
+        applicationId = "com.betstrivepro"
         minSdk = 24
         targetSdk = 34
         versionCode = 2

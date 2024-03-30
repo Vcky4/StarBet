@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1010660744942",
-    "project_id": "starbet-3ab4c",
-    "storage_bucket": "starbet-3ab4c.appspot.com"
+    "project_number": "20911502507",
+    "project_id": "betstrivepro-a02d6",
+    "storage_bucket": "betstrivepro-a02d6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1010660744942:android:e5a4f09c04720feb5cddff",
+        "mobilesdk_app_id": "1:20911502507:android:d59d969acdadeaeedc73ee",
         "android_client_info": {
           "package_name": "com.betstrivepro"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCjCcyX781b41qq4Ts-JvxlSEkh0GJXYBU"
+          "current_key": "AIzaSyBvgUcTpt-ZM4AsBkn3RJNIvizaf1ycUfQ"
         }
       ],
       "services": {

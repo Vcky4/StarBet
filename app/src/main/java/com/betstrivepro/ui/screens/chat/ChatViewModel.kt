@@ -45,7 +45,7 @@ class ChatViewModel(private val context: Application) : ViewModel(), KoinCompone
     }
     private val fcmApi = "https://fcm.googleapis.com/fcm/send"
     private val serverKey =
-        "key=" + "AAAA61ATHu4:APA91bFHapdUNCXqVD-oMYnNN9rEAcCeF9POyr2AmwUPTwFXphLlMHAlhL7Yh71GGaK2-uXPuzvKHmS_CbUel-XXH1eigeOZ8YD7gMTP8cy0NQmBO1y7qZvfQObr4jtD8-FNA7qlDukR"
+        "key=" + "AAAABN5sNKs:APA91bEV7NARYe_lqKyshzK4JtwaHvvSVJ9us0AjapbK7L_WvyqUxBDTv46srY1Ra4dFi2cm6KCnjuZJtBgTvSiaonlU5mflGW1OwmmU78biMGOw5qENky2O045BzQ_QKNxk849tNUlR"
     private val contentType = "application/json"
     private val _chatId = MutableLiveData("")
     private val _userName = MutableLiveData("")

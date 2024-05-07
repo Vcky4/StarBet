@@ -28,9 +28,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.betstrivepro" />
-                  <option name="mobileSdkAppId" value="1:1010660744942:android:e5a4f09c04720feb5cddff" />
-                  <option name="projectId" value="starbet-3ab4c" />
-                  <option name="projectNumber" value="1010660744942" />
+                  <option name="mobileSdkAppId" value="1:20911502507:android:d59d969acdadeaeedc73ee" />
+                  <option name="projectId" value="betstrivepro-a02d6" />
+                  <option name="projectNumber" value="20911502507" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

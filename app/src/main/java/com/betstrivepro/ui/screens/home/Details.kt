@@ -40,8 +40,20 @@ fun DetailScreen(trigger: String, navigator: DestinationsNavigator) {
     val prev = stringResource(id = R.string.previous_correct_score)
     val prev2 = stringResource(id = R.string.previouss_draws_vip)
     val history = when (trigger) {
-        prev -> tips.sortedByDescending { it.date }
-        prev2 -> tips.sortedByDescending { it.date }
+        prev -> tips.sortedByDescending {
+            SimpleDateFormat(
+                "dd/MM/yyyy",
+                Locale.ENGLISH
+            ).parse(it.date).time
+        }
+
+        prev2 -> tips.sortedByDescending {
+            SimpleDateFormat(
+                "dd/MM/yyyy",
+                Locale.ENGLISH
+            ).parse(it.date).time
+        }
+
         else -> tips.filter {
             !DateUtils.isToday(
                 SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
